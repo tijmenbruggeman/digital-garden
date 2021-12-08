@@ -26,7 +26,8 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-      "@nuxt/content"
+      "@nuxt/content",
+      "digital-garden.d.ts"
     ]
   },
   "exclude": [

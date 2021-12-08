@@ -22,7 +22,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  async asyncData({ $content }) {
+  async asyncData({ $content }): Promise<{ notes: Array<Note> }> {
     const notes = await $content("notes")
       .sortBy("publishOn", "desc")
       .fetch<any>();
@@ -32,9 +32,10 @@ export default Vue.extend({
   },
   data: () => ({
     selectedTag: "",
+    notes: [] as Array<Note>,
   }),
   computed: {
-    visibleNotes() {
+    visibleNotes(): Array<Note> {
       if (!this.selectedTag) return this.notes;
       return this.notes.filter(({ tags }) => {
         if (!Array.isArray(tags)) return false;
